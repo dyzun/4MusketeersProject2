@@ -17,19 +17,28 @@
         if($userAccount->rowCount() > 0){
         session_start();
         $_SESSION["username"] = $username;
-        //echo "login successful";
-        header("Location: todolist.php"); /* Redirect browser */
-        die();
+        
+        /*
+        Determines the current time
+        */
+        date_default_timezone_set('America/New_York');
+        $timeStamp = new DateTime();
+        $timeOfLogin = date("D d M Y, g:i:s a", $timeStamp->getTimeStamp());
+            
+        if(!isset($_COOKIE['time'])){
+            setcookie('time', $timeOfLogin);
+            header("Location: todolist.php"); // login successful so redirect to the TO-DO LIST
+            die();
+            }
         }
         else{
-            //echo "login unsuccessful";
-            header("Location: index.html");
+            header("Location: index.html"); // login unsuccessful so redirect to login page
             die();
         }
+        
             }
     catch(PDOException $e)
         {
         echo "Connection failed: " . $e->getMessage();
-        echo "<br> test";
         }
     ?>

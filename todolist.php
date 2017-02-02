@@ -1,12 +1,6 @@
 <?php
 session_start();
 if(isset($_SESSION["username"])){
-    date_default_timezone_set('America/New_York');
-    $timeStamp = new DateTime();
-    $timeOfLogin = date("D d M Y, g:i:s a", $timeStamp->getTimeStamp());
-    if(!isset($_COOKIE['time'])){
-    setcookie('time', $timeOfLogin);
-    }
     echo "<!DOCTYPE html>
     <html>
         <head>
