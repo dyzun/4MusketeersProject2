@@ -14,7 +14,6 @@
 				Remember<br/>the Cow
 			</h1>
 		</div>
-
 		<div id="main">
 			<p>
 				The best way to manage your tasks. <br />
@@ -33,7 +32,7 @@
 			</form>
 
 			<p>
-				<em>(last login from this computer was ???)</em>
+				<em>(last login from this computer was <?php echo $_COOKIE['time']; ?> )</em>
 			</p>
 		</div>
 
