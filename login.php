@@ -1,15 +1,16 @@
 <?php
-    
+
+
     $username = $_POST["name"];
     $password = $_POST["password"];
 
     $servername = "localhost:3306";
     $dbusername = "root";
-    $dbpassword = "password";
+    $dbpassword = "Jaljap2732!";
 
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=gis", $dbusername, $dbpassword);
+        $conn = new PDO("mysql:host=$servername;dbname=gis2", $dbusername, $dbpassword);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT * FROM p2users WHERE name = '$username' and pw = '$password'";

@@ -38,8 +38,8 @@ if(isset($_SESSION["username"])){
                         </form>
                         sleep
                     </li>
-                    <li>
-                        <form action='submit.php' method='post'>
+                    <li >
+                        <form id='additionForm' action='submit.php' method='post'>
                             <input type='hidden' name='action' value='add' />
                             <input name='item' type='text' size='25' autofocus='autofocus' />
                             <input type='submit' value='Add' />
