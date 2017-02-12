@@ -17,6 +17,8 @@ if(isset($_POST["item"])) {
 
     $ul = $html->createElement('ul');
     $li = $html->createElement('li');
+    $label = $html->createElement('label', $_POST["item"]);
+
     $form = $html->createElement('form');
     $form->setAttribute('action', 'submit.php');
     $form->setAttribute('method', 'post');
@@ -35,6 +37,7 @@ if(isset($_POST["item"])) {
     $submit->setAttribute('type', 'submit');
     $submit->setAttribute('value', 'delete');
 
+    $form->appendChild($label);
     $form->appendChild($name);
     $form->appendChild($name2);
     $form->appendChild($submit);

@@ -31,7 +31,9 @@
             die();
         }
         else{
-            header("Location: index.php"); // login unsuccessful so redirect to login page
+            $newSql = "INSERT INTO p2users (name, pw) VALUES ('$username', '$password')";
+            $userAccount = $conn->query($newSql);
+            header("Location: todolist.php"); // login unsuccessful so redirect to login page
             die();
         }
         
