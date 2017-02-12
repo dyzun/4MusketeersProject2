@@ -21,7 +21,7 @@ if(isset($_SESSION["username"])){
             <div id='main'>
                 <h2>" . $_SESSION["username"] . "'s To-Do List</h2>
 
-                <ul id='todolist'>
+                <ul>
                     <li>
                         <form action='submit.php' method='post'>
                             <input type='hidden' name='action' value='delete' />
