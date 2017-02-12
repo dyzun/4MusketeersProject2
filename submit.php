@@ -6,11 +6,11 @@ $servername = "localhost:3306";
     $dbpassword = "";
     try {
         $conn = new PDO("mysql:host=$servername;dbname=project2", $dbusername, $dbpassword);
-    if($_POST["action"] == "Delete"){
+    if($_POST["action"] == "delete"){
 		$statement = $conn->prepare("Delete From p2todo where p2todoitem = ? and p2user = ?");
                 $statement->execute(array($_POST["item"], $_SESSION["username"])); 
 		header("Location: todolist.php");
-	} else if($_POST["action"] == "Add"){
+	} else if($_POST["action"] == "add"){
                 $statement = $conn->prepare("INSERT INTO p2todo(p2todoitem, p2user)VALUES(?, ?)");
                 $statement->execute(array($_POST["item"], $_SESSION["username"]));
 		header("Location: todolist.php");            

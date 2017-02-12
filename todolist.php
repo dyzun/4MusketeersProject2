@@ -35,6 +35,7 @@ if(isset($_SESSION["username"])){
                 <li>
 			<form action="submit.php" method="post">
 				<input type="hidden" name="action" value="delete" />
+                                <input type="hidden" name="item" value="<?=$title?>"/>
 				<input type="submit" value="Delete" />
 		</form>
                     <?=$title?><?php
@@ -44,7 +45,7 @@ if(isset($_SESSION["username"])){
     }//try 
             echo "
                     <li >
-                        <form id='additionForm' action='submit.php' method='post'>
+                        <form action='submit.php' method='post'>
                             <input type='hidden' name='action' value='add' />
                             <input name='item' type='text' size='25' autofocus='autofocus' />
                             <input type='submit' value='Add' />
