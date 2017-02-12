@@ -21,23 +21,28 @@ if(isset($_SESSION["username"])){
             <div id='main'>
                 <h2>" . $_SESSION["username"] . "'s To-Do List</h2>
 
-                <ul>
-                    <li>
-                        <form action='submit.php' method='post'>
-                            <input type='hidden' name='action' value='delete' />
-                            <input type='hidden' name='index' value='0' />
-                            <input type='submit' value='Delete' />
-                        </form>
-                        eat
-                    </li>
-                    <li>
-                        <form action='submit.php' method='post'>
-                            <input type='hidden' name='action' value='delete' />
-                            <input type='hidden' name='index' value='1' />
-                            <input type='submit' value='Delete' />
-                        </form>
-                        sleep
-                    </li>
+                <ul>";
+    $servername = "localhost:3306";
+    $dbusername = "root";
+    $dbpassword = "";
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=project2", $dbusername, $dbpassword);
+        $statement = $conn->prepare("SELECT p2todoitem from p2todo WHERE p2user = ?");
+        $statement->execute(array($_SESSION["username"]));
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+                $title = $row['p2todoitem'];?>
+                <li>
+			<form action="submit.php" method="post">
+				<input type="hidden" name="action" value="delete" />
+				<input type="submit" value="Delete" />
+		</form>
+                    <?=$title?><?php
+            }//while
+     }catch(PDOException $e){
+        echo "Connection failed: " . $e->getMessage();
+    }//try 
+            echo "
                     <li >
                         <form id='additionForm' action='submit.php' method='post'>
                             <input type='hidden' name='action' value='add' />
@@ -46,7 +51,6 @@ if(isset($_SESSION["username"])){
                         </form>
                     </li>
                 </ul>
-
                 <div>
                     <a href='logout.php'><strong>Log Out</strong></a>
                     <em>(logged in since ";

@@ -1,16 +1,26 @@
 <?php
 
 session_start();
+$servername = "localhost:3306";
+    $dbusername = "root";
+    $dbpassword = "";
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=project2", $dbusername, $dbpassword);
+    if($_POST["action"] == "Delete"){
+		$statement = $conn->prepare("Delete From p2todo where p2todoitem = ? and p2user = ?");
+                $statement->execute(array($_POST["item"], $_SESSION["username"])); 
+		header("Location: todolist.php");
+	} else if($_POST["action"] == "Add"){
+                $statement = $conn->prepare("INSERT INTO p2todo(p2todoitem, p2user)VALUES(?, ?)");
+                $statement->execute(array($_POST["item"], $_SESSION["username"]));
+		header("Location: todolist.php");            
+	}
+    }catch(PDOException $e){
+        echo "Connection failed: " . $e->getMessage();
+    }
+    //end try catch block
 
-if(isset($_POST["item"])) {
-    //header('Location:todolist.php');
-//    echo "<h1>";
-//    echo $_POST["item"];
-//    echo "</h1>";
-
-    //header('Location:todolist.php');
-
-
+/*
 
     $html = new DOMDocument('1.0', 'iso-8859-1');
     $html->formatOutput = true;
@@ -50,4 +60,4 @@ if(isset($_POST["item"])) {
 
 
     echo html_entity_decode($html->saveHTML());
-}
+ */
