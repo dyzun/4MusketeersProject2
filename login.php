@@ -6,11 +6,11 @@
 
     $servername = "localhost:3306";
     $dbusername = "root";
-    $dbpassword = "Jaljap2732!";
+    $dbpassword = "";
 
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=gis2", $dbusername, $dbpassword);
+        $conn = new PDO("mysql:host=$servername;dbname=project2", $dbusername, $dbpassword);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $sql = "SELECT * FROM p2users WHERE name = '$username' and pw = '$password'";
