@@ -15,7 +15,7 @@
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
         // check username and password validation
-        if (preg_match(^[a-z][a-z0-9]{2,7}, $username) && preg_match(^[0-9][a-z0-9]{4,10}[^a-z0-9]$, $password) 
+        if (preg_match('/^[a-z][a-z0-9]{2,7}/', $username) && preg_match('/^[0-9][a-z0-9]{4,10}[^a-z0-9]$/', $password) )
         {
             $sql = "SELECT * FROM p2users WHERE name = '$username' and pw = '$password'";
             $userAccount = $conn->query($sql);
