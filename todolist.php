@@ -24,9 +24,9 @@ if(isset($_SESSION["username"])){
                 <ul>";
     $servername = "localhost:3306";
     $dbusername = "root";
-    $dbpassword = "";
+    $dbpassword = "Jaljap2732!";
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=project2", $dbusername, $dbpassword);
+        $conn = new PDO("mysql:host=$servername;dbname=gis2", $dbusername, $dbpassword);
         $statement = $conn->prepare("SELECT p2todoitem from p2todo WHERE p2user = ?");
         $statement->execute(array($_SESSION["username"]));
         while ($row = $statement->fetch(PDO::FETCH_ASSOC))
