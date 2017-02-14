@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `p2users`
 --
-
+USE GIS2;
 CREATE TABLE `p2users` (
   `name` tinytext,
   `pw` tinytext

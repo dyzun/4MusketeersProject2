@@ -8,6 +8,11 @@
     $dbusername = "root";
     $dbpassword = "";
 
+    function redirect($url, $statusCode = 303)
+    {
+       header('Location: ' . $url, true, $statusCode);
+       die();
+    }
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=project2", $dbusername, $dbpassword);
@@ -15,8 +20,10 @@
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
         // check username and password validation
-        if (preg_match('/^[a-z][a-z0-9]{2,7}/', $username) && preg_match('/^[0-9][a-z0-9]{4,10}[^a-z0-9]$/', $password) )
-        {
+
+        if (preg_match('/^[a-z][a-z0-9]{2,7}/', $username) 
+		&& preg_match('/^[0-9][a-z0-9]{4,10}[^a-z0-9]$/', $password)) {
+
             $sql = "SELECT * FROM p2users WHERE name = '$username' and pw = '$password'";
             $userAccount = $conn->query($sql);
             if($userAccount->rowCount() > 0){
@@ -42,8 +49,8 @@
             }
         } // if
         else {
-            echo "Username and/or password invalid.";
-            throw new PDOException();
+            redirect("index.php", 303);
+            die();
         }
         
     } catch(PDOException $e) {
