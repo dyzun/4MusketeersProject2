@@ -3,7 +3,7 @@
 session_start();
 $servername = "localhost:3306";
     $dbusername = "root";
-    $dbpassword = "";
+    $dbpassword = "Jaljap2732!";
     try {
         $conn = new PDO("mysql:host=$servername;dbname=project2", $dbusername, $dbpassword);
     if($_POST["action"] == "delete"){
