@@ -6,7 +6,7 @@
 
     $servername = "localhost:3306";
     $dbusername = "root";
-    $dbpassword = "Jaljap2732!";
+    $dbpassword = "";
 
     function redirect($url, $statusCode = 303)
     {
@@ -15,13 +15,15 @@
     }
 
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=gis2", $dbusername, $dbpassword);
+        $conn = new PDO("mysql:host=$servername;dbname=project2", $dbusername, $dbpassword);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
         // check username and password validation
+
         if (preg_match('/^[a-z][a-z0-9]{2,7}/', $username) 
 		&& preg_match('/^[0-9][a-z0-9]{4,10}[^a-z0-9]$/', $password)) {
+
             $sql = "SELECT * FROM p2users WHERE name = '$username' and pw = '$password'";
             $userAccount = $conn->query($sql);
             if($userAccount->rowCount() > 0){
