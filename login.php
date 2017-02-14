@@ -8,6 +8,11 @@
     $dbusername = "root";
     $dbpassword = "";
 
+    function redirect($url, $statusCode = 303)
+    {
+       header('Location: ' . $url, true, $statusCode);
+       die();
+    }
 
     try {
         $conn = new PDO("mysql:host=$servername;dbname=project2", $dbusername, $dbpassword);
@@ -42,8 +47,8 @@
             }
         } // if
         else {
-            echo "Username and/or password invalid.";
-            throw new PDOException();
+            redirect("index.php", 303);
+            die();
         }
         
     } catch(PDOException $e) {
